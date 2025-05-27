@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar } from "@/components/shared/Navbar";
+import Navbar from "@/components/shared/Navbar";
 import PlatformStat from "@/components/home/PlatformStat";
 import Working from "@/components/home/Working";
 import Features from "@/components/home/Features";
