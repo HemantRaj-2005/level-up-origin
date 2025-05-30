@@ -1,11 +1,12 @@
 import React from "react";
-import Navbar from "@/components/shared/Navbar";
+
 import PlatformStat from "@/components/home/PlatformStat";
 import Working from "@/components/home/Working";
 import Features from "@/components/home/Features";
 import Testimonials from "@/components/home/Testimonials";
 import CTAsection from "@/components/home/CTAsection";
 import Hero from "@/components/home/Hero";
+import Navbar from "@/components/shared/Navbar";
 const Page = () => {
   return (
     <div>

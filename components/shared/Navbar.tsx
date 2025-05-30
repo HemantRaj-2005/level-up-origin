@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion, useInView } from "framer-motion"
+import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -46,7 +47,9 @@ const Navbar: React.FC = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <Link href="/" className="flex items-center gap-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-200 dark:from-blue-300 dark:to-blue-100 [text-shadow:_0_0_8px_rgba(255,255,255,0.3),_0_0_12px_rgba(59,130,246,0.2)] animate-[shine_4s_linear_infinite] bg-[length:200%_auto]">
-            YourLogo
+          <span className="rounded-full overflow-hidden">
+            <Image src="/logo.png" alt="logo" width={48} height={48} className="rounded-full"/>
+          </span>
           </Link>
         </motion.div>
 
