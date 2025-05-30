@@ -1,9 +1,5 @@
-import React from 'react'
+const SignIn: React.FC = () => {
+  return <div>Sign in with google</div>;
+};
 
-const Page = () => {
-  return (
-    <div>Page</div>
-  )
-}
-
-export default Page
+export default SignIn;

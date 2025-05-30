@@ -1,29 +1,29 @@
-"use client"
-import Link from "next/link"
-import React, { useRef, useState } from "react"
-import { Moon, Sun, Menu, X } from "lucide-react"
-import { useTheme } from "next-themes"
-import { motion, useInView } from "framer-motion"
-import Image from "next/image"
+"use client";
+import Link from "next/link";
+import React, { useRef, useState } from "react";
+import { Moon, Sun, Menu, X } from "lucide-react";
+import { useTheme } from "next-themes";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 // Define TypeScript interface for nav items
 interface NavItem {
-  name: string
-  href: string
+  name: string;
+  href: string;
 }
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const { setTheme } = useTheme()
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { setTheme } = useTheme();
 
   const navItems: NavItem[] = [
     { name: "Home", href: "/" },
@@ -31,14 +31,17 @@ const Navbar: React.FC = () => {
     { name: "Pricing", href: "/pricing" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
-  ]
+  ];
 
   // Use ref and useInView for subtle animation on load
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-gradient-to-br from-gray-900/90 to-gray-800/90 dark:from-black/90 dark:to-gray-900/90 backdrop-blur-sm border-b border-gray-700 dark:border-gray-800" ref={ref}>
+    <header
+      className="fixed inset-x-0 top-0 z-50 bg-gradient-to-br from-gray-900/90 to-gray-800/90 dark:from-black/90 dark:to-gray-900/90 backdrop-blur-sm border-b border-gray-700 dark:border-gray-800"
+      ref={ref}
+    >
       <div className="container flex h-16 items-center justify-between px-6">
         {/* Logo */}
         <motion.div
@@ -46,10 +49,16 @@ const Navbar: React.FC = () => {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <Link href="/" className="flex items-center gap-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-200 dark:from-blue-300 dark:to-blue-100 [text-shadow:_0_0_8px_rgba(255,255,255,0.3),_0_0_12px_rgba(59,130,246,0.2)] animate-[shine_4s_linear_infinite] bg-[length:200%_auto]">
-          <span className="rounded-full overflow-hidden">
-            <Image src="/logo.png" alt="logo" width={48} height={48} className="rounded-full"/>
-          </span>
+          <Link href="/">
+            <span className="rounded-full overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+            </span>
           </Link>
         </motion.div>
 
@@ -60,7 +69,11 @@ const Navbar: React.FC = () => {
               key={item.name}
               initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * navItems.indexOf(item), ease: "easeOut" }}
+              transition={{
+                duration: 0.5,
+                delay: 0.1 * navItems.indexOf(item),
+                ease: "easeOut",
+              }}
             >
               <Link
                 href={item.href}
@@ -72,7 +85,7 @@ const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-6">
           {/* Theme Toggle */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -91,7 +104,10 @@ const Navbar: React.FC = () => {
                   <span className="sr-only">Toggle theme</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-gray-800 dark:bg-gray-950 border-gray-700 dark:border-gray-800">
+              <DropdownMenuContent
+                align="end"
+                className="bg-gray-800 dark:bg-gray-950 border-gray-700 dark:border-gray-800"
+              >
                 <DropdownMenuItem
                   onClick={() => setTheme("light")}
                   className="text-gray-400 dark:text-gray-200 hover:bg-blue-600/10 dark:hover:bg-blue-500/10 hover:text-blue-400 dark:hover:text-blue-300"
@@ -114,6 +130,20 @@ const Navbar: React.FC = () => {
             </DropdownMenu>
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <Link href="/sign-in">
+              <Button
+                className="hidden sm:inline-flex bg-blue-700/20 dark:bg-blue-600/20 border-blue-600 dark:border-blue-500 text-blue-400 dark:text-blue-300 hover:bg-blue-600/10 cursor-pointer dark:hover:bg-blue-500/10"
+              >
+                Sign In
+              </Button>
+            </Link>
+          </motion.div>
+
           {/* Mobile Menu Button */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -126,7 +156,11 @@ const Navbar: React.FC = () => {
               className="md:hidden bg-blue-700/20 dark:bg-blue-600/20 text-blue-400 dark:text-blue-300 hover:bg-blue-600/10 dark:hover:bg-blue-500/10 rounded-xl"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
               <span className="sr-only">Toggle menu</span>
             </Button>
           </motion.div>
@@ -136,7 +170,9 @@ const Navbar: React.FC = () => {
       {/* Mobile Navigation */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
-        animate={isOpen && isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+        animate={
+          isOpen && isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
+        }
         transition={{ duration: 0.3, ease: "easeOut" }}
         className={cn(
           "md:hidden absolute top-16 inset-x-0 px-6 pt-2 pb-4 space-y-2 bg-gradient-to-br from-gray-900/95 to-gray-800/95 dark:from-black/95 dark:to-gray-900/95 backdrop-blur-sm border-b border-gray-700 dark:border-gray-800",
@@ -159,8 +195,8 @@ const Navbar: React.FC = () => {
               variant="ghost"
               className="justify-start text-gray-400 dark:text-gray-200 hover:bg-blue-600/10 dark:hover:bg-blue-500/10 hover:text-blue-400 dark:hover:text-blue-300 [text-shadow:_0_0_4px_rgba(255,255,255,0.2),_0_0_8px_rgba(59,130,246,0.1)] animate-[glow_3s_ease-in-out_infinite]"
               onClick={() => {
-                setTheme("light")
-                setIsOpen(false)
+                setTheme("light");
+                setIsOpen(false);
               }}
             >
               Light Theme
@@ -169,8 +205,8 @@ const Navbar: React.FC = () => {
               variant="ghost"
               className="justify-start text-gray-400 dark:text-gray-200 hover:bg-blue-600/10 dark:hover:bg-blue-500/10 hover:text-blue-400 dark:hover:text-blue-300 [text-shadow:_0_0_4px_rgba(255,255,255,0.2),_0_0_8px_rgba(59,130,246,0.1)] animate-[glow_3s_ease-in-out_infinite]"
               onClick={() => {
-                setTheme("dark")
-                setIsOpen(false)
+                setTheme("dark");
+                setIsOpen(false);
               }}
             >
               Dark Theme
@@ -179,15 +215,21 @@ const Navbar: React.FC = () => {
               variant="ghost"
               className="justify-start text-gray-400 dark:text-gray-200 hover:bg-blue-600/10 dark:hover:bg-blue-500/10 hover:text-blue-400 dark:hover:text-blue-300 [text-shadow:_0_0_4px_rgba(255,255,255,0.2),_0_0_8px_rgba(59,130,246,0.1)] animate-[glow_3s_ease-in-out_infinite]"
               onClick={() => {
-                setTheme("system")
-                setIsOpen(false)
+                setTheme("system");
+                setIsOpen(false);
               }}
             >
               System Theme
             </Button>
+            <Link href="/sign-in" onClick={() => setIsOpen(false)}>
+              <Button className="w-full bg-blue-700/20 dark:bg-blue-600/20 border-blue-600 dark:border-blue-500 text-blue-400 dark:text-blue-300 hover:bg-blue-600/10 dark:hover:bg-blue-500/10 rounded-xl">
+                Sign In
+              </Button>
+            </Link>
           </div>
         </div>
       </motion.div>
+
       <style>{`
         @keyframes shine {
           0% {
@@ -207,7 +249,7 @@ const Navbar: React.FC = () => {
         }
       `}</style>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

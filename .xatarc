@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://HEMANT-RAJ-s-workspace-6ougn8.us-east-1.xata.sh/db/level_up_origin",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
