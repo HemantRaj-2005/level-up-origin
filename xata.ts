@@ -12,11 +12,13 @@ const DatabaseClient = buildClient();
 const defaultOptions = {
   databaseURL:
     "https://HEMANT-RAJ-s-workspace-6ougn8.us-east-1.xata.sh/db/level_up_origin",
+    apiKey: process.env.XATA_API_KEY,
+    branch: 'main'
 };
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {
   constructor(options?: BaseClientOptions) {
-    super({ ...defaultOptions, ...options }, tables);
+    super({ ...defaultOptions, ...options });
   }
 }
 
